@@ -32,7 +32,10 @@ const Home = () => {
           <Typography variant="h2">
             {currentWeatherData.location.name}
           </Typography>
-          <img src={currentWeatherData.current.condition.icon} />
+          <img
+            src={currentWeatherData.current.condition.icon}
+            alt="weather icon"
+          />
           <Typography variant="h3">
             {currentWeatherData.current.temp_c}°C
           </Typography>
