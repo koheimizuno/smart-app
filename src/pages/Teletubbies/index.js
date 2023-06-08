@@ -13,15 +13,6 @@ const Teletubbies = () => {
   const [visibleTeletubbies, setVisibleTeletubbies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    fetch("/teletubbies.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setTeletubbies(data);
-        setVisibleTeletubbies(data.slice(0, 20));
-      });
-  }, []);
-
   const handleScroll = () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       const newVisibleTeletubbies = [
@@ -35,14 +26,18 @@ const Teletubbies = () => {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [visibleTeletubbies]);
-
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
+
+  useEffect(() => {
+    fetch("/teletubbies.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setTeletubbies(data);
+        setVisibleTeletubbies(data.slice(0, 20));
+      });
+  }, []);
 
   useEffect(() => {
     const filteredTeletubbies = teletubbies.filter((teletubby) =>
@@ -50,7 +45,12 @@ const Teletubbies = () => {
     );
     setVisibleTeletubbies(filteredTeletubbies.slice(0, 20));
   }, [searchTerm, teletubbies]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
+
   return (
     <Container maxWidth="lg">
       <Typography variant="h1" sx={{ mt: 4 }}>
@@ -64,7 +64,6 @@ const Teletubbies = () => {
         value={searchTerm}
         onChange={handleInputChange}
       />
-      <Grid container>
       <Grid container spacing={2}>
         {visibleTeletubbies.map((teletubby, key) => {
           return (
