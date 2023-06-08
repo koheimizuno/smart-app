@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { Container, Grid, Box, Typography, Button } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Box,
+  Typography,
+  Button,
+  TextField,
+} from "@mui/material";
 
 const Teletubbies = () => {
   const [teletubbies, setTeletubbies] = useState([]);
   const [visibleTeletubbies, setVisibleTeletubbies] = useState([]);
-  useEffect(() => {
-    fetch("/teletubbies.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setTeletubbies(data);
-        setVisibleTeletubbies(data.slice(0, 20));
-      });
-  }, []);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const handleScroll = () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       const newVisibleTeletubbies = [
@@ -24,15 +25,45 @@ const Teletubbies = () => {
       setVisibleTeletubbies(newVisibleTeletubbies);
     }
   };
+
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  useEffect(() => {
+    fetch("/teletubbies.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setTeletubbies(data);
+        setVisibleTeletubbies(data.slice(0, 20));
+      });
+  }, []);
+
+  useEffect(() => {
+    const filteredTeletubbies = teletubbies.filter((teletubby) =>
+      teletubby.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setVisibleTeletubbies(filteredTeletubbies.slice(0, 20));
+  }, [searchTerm, teletubbies]);
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [visibleTeletubbies]);
+  }, [handleScroll]);
+
   return (
     <Container maxWidth="lg">
       <Typography variant="h1" sx={{ mt: 4 }}>
         Teletubbies
       </Typography>
+      <TextField
+        label="Search by name"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+        value={searchTerm}
+        onChange={handleInputChange}
+      />
       <Grid container spacing={2}>
         {visibleTeletubbies.map((teletubby, key) => {
           return (
@@ -81,4 +112,5 @@ const Teletubbies = () => {
     </Container>
   );
 };
+
 export default Teletubbies;
