@@ -1,10 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Layout from "pages/Layout"
-import Home from "pages/Home"
-import NFTS from "pages/NFTS/NFTs.component"
-import "./App.css"
-import Teletubbies from "pages/Teletubbies"
+import Layout from "pages/Layout";
+import Home from "pages/Home";
+import NFTS from "pages/NFTS/NFTs.component";
+import "./App.css";
+import Teletubbies from "pages/Teletubbies";
 
 function App () {
   return (
