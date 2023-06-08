@@ -27,8 +27,7 @@ const Teletubbies = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-    // eslint-disable-next-line
-  }, [visibleTeletubbies]);
+  }, [handleScroll]);
   return (
     <Container maxWidth="lg">
       <Typography variant="h1" sx={{ mt: 4 }}>
