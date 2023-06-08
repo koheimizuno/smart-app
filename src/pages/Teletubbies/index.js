@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Container,
   Grid,
@@ -13,7 +13,7 @@ const Teletubbies = () => {
   const [visibleTeletubbies, setVisibleTeletubbies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       const newVisibleTeletubbies = [
         ...visibleTeletubbies,
@@ -24,7 +24,7 @@ const Teletubbies = () => {
       ];
       setVisibleTeletubbies(newVisibleTeletubbies);
     }
-  };
+  }, [setVisibleTeletubbies, visibleTeletubbies, teletubbies]);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
