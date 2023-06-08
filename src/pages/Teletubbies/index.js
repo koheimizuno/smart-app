@@ -12,6 +12,22 @@ const Teletubbies = () => {
         setVisibleTeletubbies(data.slice(0, 20));
       });
   }, []);
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      const newVisibleTeletubbies = [
+        ...visibleTeletubbies,
+        ...teletubbies.slice(
+          visibleTeletubbies.length,
+          visibleTeletubbies.length + 20
+        ),
+      ];
+      setVisibleTeletubbies(newVisibleTeletubbies);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [visibleTeletubbies]);
   return (
     <>
       <Container maxWidth="lg">
