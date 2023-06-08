@@ -3,38 +3,20 @@ import { Container, Grid, Box, Typography, Button } from "@mui/material";
 
 const Teletubbies = () => {
   const [teletubbies, setTeletubbies] = useState([]);
-  const [visibleTeletubbies, setVisibleTeletubbies] = useState([]);
-  useEffect(() => {
+  useEffect(() => { 
     fetch("/teletubbies.json")
       .then((response) => response.json())
       .then((data) => {
-        setTeletubbies(data);
-        setVisibleTeletubbies(data.slice(0, 20));
+        setTeletubbies(data.slice(0, 20));
       });
   }, []);
-  const handleScroll = () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      const newVisibleTeletubbies = [
-        ...visibleTeletubbies,
-        ...teletubbies.slice(
-          visibleTeletubbies.length,
-          visibleTeletubbies.length + 20
-        ),
-      ];
-      setVisibleTeletubbies(newVisibleTeletubbies);
-    }
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [visibleTeletubbies]);
   return (
     <Container maxWidth="lg">
       <Typography variant="h1" sx={{ mt: 4 }}>
         Teletubbies
       </Typography>
       <Grid container spacing={2}>
-        {visibleTeletubbies.map((teletubby, key) => {
+        {teletubbies.map((teletubby, key) => {
           return (
             <Grid
               container
