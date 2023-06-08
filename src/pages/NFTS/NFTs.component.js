@@ -14,8 +14,6 @@ const Nfts_PAGE = () => {
     )
     const data = await response.json()
     setListing([...listing, ...data.results])
-
-    console.log(response)
   }
 
   useEffect(() => {
