@@ -38,7 +38,6 @@ const Teletubbies = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-    // eslint-disable-next-line
   }, [visibleTeletubbies]);
 
   const handleInputChange = (event) => {
@@ -51,7 +50,7 @@ const Teletubbies = () => {
     );
     setVisibleTeletubbies(filteredTeletubbies.slice(0, 20));
   }, [searchTerm, teletubbies]);
-
+  }, [handleScroll]);
   return (
     <Container maxWidth="lg">
       <Typography variant="h1" sx={{ mt: 4 }}>
@@ -66,6 +65,7 @@ const Teletubbies = () => {
         onChange={handleInputChange}
       />
       <Grid container>
+      <Grid container spacing={2}>
         {visibleTeletubbies.map((teletubby, key) => {
           return (
             <Grid
