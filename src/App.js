@@ -8,13 +8,13 @@ import Teletubbies from "pages/Teletubbies"
 
 function App () {
   return (
-    <div className='App'>
+    <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Layout />}>
+          <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path='/NFTS' element={<NFTS />} />
-            <Route path='/teletubbies' element={<Teletubbies />} />
+            <Route path="/NFTS" element={<NFTS />} />
+            <Route path="/teletubbies" element={<Teletubbies />} />
           </Route>
         </Routes>
       </BrowserRouter>
