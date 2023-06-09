@@ -1,6 +1,11 @@
-# Getting Started with Smart App
+# Smart App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is project using MUI with React.
+The purpose is to practise the skill using the command of the Git.
+
+# Tech stack
+
+React, MUI
 
 # How to run the project
 
@@ -42,17 +47,3 @@ Build a page with the following requirements:
 - A design mock is as following:
 
   <img src="./public/teletubbies.png" />
-
-## Buildings page
-
-We have `buildings.json` in `public` directory.
-
-Build a page with the following requirements:
-
-- On load, show 20 buildings, it should be responsive
-- Each card will consist of an name, alerts, savings, uptime, power
-- Show more listing as user scrolls down the page
-- Searh Buildings by name (frontend side)
-- A design mock is as following:
-
-  <img src="./public/buildings.png" />
