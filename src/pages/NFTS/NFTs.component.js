@@ -8,6 +8,8 @@ import Box from "@mui/material/Box";
 const Nfts_PAGE = () => {
   const [listing, setListing] = useState([]);
   const [offset, setOffset] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredListing, setFilteredListing] = useState([]);
 
   const loadListing = useCallback(async () => {
     const response = await fetch(
@@ -15,12 +17,25 @@ const Nfts_PAGE = () => {
     );
     const data = await response.json();
     setListing([...listing, ...data.results]);
+    setFilteredListing([...listing, ...data.results]);
     setOffset(offset + 20);
   }, [offset, listing]);
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
 
   useEffect(() => {
     loadListing();
   }, [loadListing]);
+
+  useEffect(() => {
+    setFilteredListing(
+      listing.filter((listing) =>
+        listing.collectionName.toLowerCase().includes(searchTerm)
+      )
+    );
+  }, [listing, searchTerm]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,16 +63,16 @@ const Nfts_PAGE = () => {
         variant="outlined"
         type="text"
         placeholder="Search by name"
-        value={""}
-        onChange={""}
-        sx={{ m: "20px" }}
+        value={searchTerm}
+        onChange={handleSearch}
+        sx={{ m: "10px" }}
       />
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {listing.map((listing) => (
+        {filteredListing.map((listing) => (
           <Grid item className="card" key={listing.id} xs={3}>
             <img
               style={{ width: "100%", height: "70%" }}
