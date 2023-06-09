@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <Container maxWidth="xl">
-      <Typography variant="h1" sx={{ marginTop: "30px" }}>
+      <Typography variant="h1" sx={{ marginTop: "60px" }}>
         Today's weather
       </Typography>
 
