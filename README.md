@@ -14,36 +14,25 @@ npm install
 npm start
 ```
 
-# Requirements
+# Page description
 
 ## NFTs page
 
-We have endpoints to return paginated NFT listings:
+- There is endpoint to return paginated NFT listings:
 
 ```
 https://api-mainnet.magiceden.io/idxv2/getListedNftsByCollectionSymbol?collectionSymbol=okay_bears&limit=20&offset=0
 ```
 
-Build a page with the following requirements:
-
-- On load, show first 20 NFT listings in a grid, the grid should be responsive
-- Each card will consist of an image, name, price
-- Show more listing as user scrolls down the page
-- Searh NFTs by name (frontend side)
-- A design mock is as following:
-
-  <img src="./public/NFTs.png" />
+- On load, first 20 NFT listings in a grid is shown, the grid become responsive
+- Each card consist of an image, name, price
+- When user scrolls down the page, more listing is shown.
+- It is possible to searh NFTs by name (frontend side)
 
 ## Teletubbies page
 
-We have `teletubbies.json` in `public` directory.
-
-Build a page with the following requirements:
-
-- On load, show 20 teletubbies, it should be responsive
-- Each card will consist of an image, name, description, tags
-- Show more listing as user scrolls down the page
-- Searh Teletubbies by name (frontend side)
-- A design mock is as following:
-
-  <img src="./public/teletubbies.png" />
+- There is `teletubbies.json` in `public` directory.
+- On load, first 20 teletubbies listings in a list is shown, the list become responsive
+- Each card consist of an image, name, descrition and traits.
+- When user scrolls down the page, more listing is shown.
+- It is possible to searh NFTs by name (frontend side)
