@@ -83,7 +83,14 @@ const Teletubbies = () => {
                 />
               </Box>
             </Grid>
-            <Grid item md={8} lg={10} sm={6} xs={12} style={{ padding: 20 }}>
+            <Grid
+              item
+              md={8}
+              lg={10}
+              sm={6}
+              xs={12}
+              style={{ paddingLeft: 20, paddingRight: 20 }}
+            >
               <Box>
                 <Typography variant="h4">{teletubby.name}</Typography>
                 <Typography
